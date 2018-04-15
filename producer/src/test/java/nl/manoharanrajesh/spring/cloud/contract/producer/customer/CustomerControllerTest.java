@@ -1,7 +1,7 @@
-package nl.manoharanrajesh.spring.cloud.contract.producer.order;
+package nl.manoharanrajesh.spring.cloud.contract.producer.customer;
 
-import nl.manoharanrajesh.spring.cloud.contract.producer.Order;
-import nl.manoharanrajesh.spring.cloud.contract.producer.OrderController;
+import nl.manoharanrajesh.spring.cloud.contract.producer.Customer;
+import nl.manoharanrajesh.spring.cloud.contract.producer.CustomerController;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,31 +14,31 @@ import org.springframework.http.ResponseEntity;
  * <p>
  * We focus on testing the component: OrderController
  */
-public class OrderControllerTest {
+public class CustomerControllerTest {
 
-    private OrderController orderController;
+    private CustomerController customerController;
 
     @Before
     public void setup() {
-        orderController = new OrderController();
+        customerController = new CustomerController();
     }
 
     @Test
     public void assertOk() {
-        ResponseEntity<Order> response200 = orderController.getOrderById("1");
+        ResponseEntity<Customer> response200 = customerController.getCustomerById("1");
         Assert.assertEquals(200, response200.getStatusCodeValue());
         Assert.assertEquals("1", response200.getBody().getId());
     }
 
     @Test
     public void assertNotFound() {
-        ResponseEntity<Order> response404 = orderController.getOrderById("404");
+        ResponseEntity<Customer> response404 = customerController.getCustomerById("404");
         Assert.assertEquals(404, response404.getStatusCodeValue());
     }
 
     @Test
     public void assertError() {
-        ResponseEntity<Order> response500 = orderController.getOrderById("500");
+        ResponseEntity<Customer> response500 = customerController.getCustomerById("500");
         Assert.assertEquals(500, response500.getStatusCodeValue());
     }
 }

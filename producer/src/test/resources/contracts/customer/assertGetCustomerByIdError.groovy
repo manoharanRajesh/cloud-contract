@@ -12,7 +12,7 @@ Contract.make {
      */
     request {
         method 'GET'
-        url('/orders/500')
+        url('/customer/500')
         headers {
             accept("application/json")
         }

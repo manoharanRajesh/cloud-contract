@@ -1,7 +1,7 @@
-package nl.manoharanrajesh.spring.cloud.contract.producer.order;
+package nl.manoharanrajesh.spring.cloud.contract.producer.customer;
 
-import nl.manoharanrajesh.spring.cloud.contract.producer.Order;
-import nl.manoharanrajesh.spring.cloud.contract.producer.OrderController;
+import nl.manoharanrajesh.spring.cloud.contract.producer.Customer;
+import nl.manoharanrajesh.spring.cloud.contract.producer.CustomerController;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,31 +15,31 @@ import org.springframework.test.context.junit4.SpringRunner;
  * <p>
  * We start a Spring application context and test the component inside the context.
  * <p>
- * Note: same test cases as in the OrderControllerTest. But slower to start/run.
+ * Note: same test cases as in the CustomerControllerTest. But slower to start/run.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OrderControllerIT {
+public class CustomerControllerIT {
 
     @Autowired
-    private OrderController orderController;
+    private CustomerController customerController;
 
     @Test
     public void assertOk() {
-        ResponseEntity<Order> response200 = orderController.getOrderById("1");
+        ResponseEntity<Customer> response200 = customerController.getCustomerById("1");
         Assert.assertEquals(200, response200.getStatusCodeValue());
         Assert.assertEquals("1", response200.getBody().getId());
     }
 
     @Test
     public void assertNotFound() {
-        ResponseEntity<Order> response404 = orderController.getOrderById("404");
+        ResponseEntity<Customer> response404 = customerController.getCustomerById("404");
         Assert.assertEquals(404, response404.getStatusCodeValue());
     }
 
     @Test
     public void assertError() {
-        ResponseEntity<Order> response500 = orderController.getOrderById("500");
+        ResponseEntity<Customer> response500 = customerController.getCustomerById("500");
         Assert.assertEquals(500, response500.getStatusCodeValue());
     }
 }

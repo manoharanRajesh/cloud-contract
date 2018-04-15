@@ -21,11 +21,11 @@ By far the most important thing to do is defining your API's behaviour. In Sprin
 
 One way of doing this is using the Groovy Contract DSL in which you can define request-response interaction using a Groovy DSL, which is being used in this example application.
 
-An example for the following scenario: requesting an order from the server with `id=1` should return an order containing at least an fields named `id` in the json response.
+An example for the following scenario: requesting an customer from the server with `id=1` should return an customer containing at least an fields named `id` in the json response.
 
-Groovy file: `assertGetOrderById.groovy`:
+Groovy file: `assertGetCustomerById.groovy`:
 ```groovy
-package contracts.order
+package contracts.customer
 
 import org.springframework.cloud.contract.spec.Contract
 
@@ -39,7 +39,7 @@ Contract.make {
      */
     request {
         method 'GET'
-        url('/orders/1')
+        url('/customer/1')
         headers {
             accept("application/json")
         }
@@ -56,18 +56,18 @@ Contract.make {
 
 Based on this DSL we can generate unit test for verifying the real API implementation. But also (WireMock) stubs which can be used for running a stub server by consumers of you service.
 
-The generated JUnit test in `OrderTest.java` would look like this: 
+The generated JUnit test in `CustomerTest.java` would look like this: 
 
 ```java
 @Test
-public void validate_assertGetOrderById() throws Exception {
+public void validate_assertGetCustomerById() throws Exception {
     // given:
         MockMvcRequestSpecification request = given()
                 .header("Accept", "application/json");
 
     // when:
         ResponseOptions response = given().spec(request)
-                .get("/orders/1");
+                .get("/customer/1");
 
     // then:
         assertThat(response.statusCode()).isEqualTo(200);
@@ -78,13 +78,13 @@ public void validate_assertGetOrderById() throws Exception {
 }
 ```
 
-The WireMock stub for this contract: `assertGetOrderById.json`:
+The WireMock stub for this contract: `assertGetCustomerById.json`:
 
 ```json
 {
   "id" : "a5367421-9668-4ea4-9663-40dc75d46278",
   "request" : {
-    "url" : "/orders/1",
+    "url" : "/customer/1",
     "method" : "GET",
     "headers" : {
       "Accept" : {

@@ -1,7 +1,7 @@
 package nl.manoharanrajesh.spring.cloud.contract.consumer;
 
 
-import nl.manoharanrajesh.spring.cloud.contract.producer.Order;
+import nl.manoharanrajesh.spring.cloud.contract.producer.Customer;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,17 +18,17 @@ public class ConsumerController {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
+    @GetMapping(value = "/")
     public String index(@RequestParam(value = "id", required = false) String id) {
         try {
-            return html("Consumer application", id == null ? "" : "Your order data: " + getOrderDetails(id));
+            return html("Consumer application", id == null ? "" : "Your customercustomer data: " + getOrderDetails(id));
         } catch (Exception e) {
             return html("Oops, something went wrong!", "Error: " + e.getMessage());
         }
     }
 
     private String getOrderDetails(String id) {
-        ResponseEntity<Order> response = restTemplate.getForEntity("/orders/{id}", Order.class, id);
+        ResponseEntity<Customer> response = restTemplate.getForEntity("/orders/{id}", Customer.class, id);
         return response.hasBody() && response.getStatusCode().is2xxSuccessful() ? response.getBody().toString() : "Unexpected HTTP response, status code: " + response.getStatusCode() + " (" + response.getStatusCode().getReasonPhrase() + ")";
     }
 

@@ -22,6 +22,6 @@ public class ConsumerControllerIT {
     @Test
     public void indexPage() {
         String indexPage = clientController.index("1");
-        Assert.assertTrue("response does not contain expected data", indexPage.contains("Your order data: Order{id='1'}"));
+        Assert.assertTrue("response does not contain expected data", indexPage.contains("Your customercustomer data: Customer{id='1'}"));
     }
 }

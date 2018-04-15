@@ -1,4 +1,4 @@
-package nl.manoharanrajesh.spring.cloud.contract.producer.order;
+package nl.manoharanrajesh.spring.cloud.contract.producer.customer;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
@@ -15,7 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class OrderBase {
+public class CustomerBase {
 
     @Autowired
     WebApplicationContext applicationContext;
