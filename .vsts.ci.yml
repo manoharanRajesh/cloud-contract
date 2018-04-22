@@ -1,0 +1,26 @@
+phases:
+################################################################################
+- phase: build_linux_agent
+################################################################################
+  displayName: Linux Agent
+  steps:
+
+  # Clean
+  - checkout: self
+    clean: true
+
+  # Build agent layout
+  - script: echo build
+    workingDirectory: src
+    displayName: Build & Layout Release
+
+  # Run test
+  - script: echo run
+    workingDirectory: src
+    displayName: Test
+
+  # Create agent package zip
+  - script: echo package
+    workingDirectory: src
+    displayName: Package Release
+    condition: and(succeeded(), ne(variables['build.reason'], 'PullRequest'))
