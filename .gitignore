@@ -66,3 +66,7 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 /spring-cloud-contract-demo.iml
+/consumer/consumer.iml
+/producer/producer.iml
+.idea/
+*.iml
