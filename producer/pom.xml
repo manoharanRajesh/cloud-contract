@@ -53,7 +53,7 @@
                 <artifactId>spring-cloud-contract-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <packageWithBaseClasses>nl.manoharanrajesh.spring.cloud.contract.producer.customer</packageWithBaseClasses>
+                    <packageWithBaseClasses>nl.manoharanrajesh.spring.cloud.contract.producer.order</packageWithBaseClasses>
                 </configuration>
             </plugin>
         </plugins>
